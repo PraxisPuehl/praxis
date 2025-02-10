@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bewerbungsformular</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        fieldset {
+            border: none;
+            margin-top: 10px;
+            padding: 0;
+        }
+    </style>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function updateFields() {
+            var bewerbungsart = document.getElementById("bewerbungsart").value;
+            var extraFields = document.querySelectorAll(".extra-field");
+            
+            extraFields.forEach(field => {
+                if (bewerbungsart === "Praktikum") {
+                    field.style.display = "none";
+                } else {
+                    field.style.display = "block";
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Bewerbungsformular</h2>
+        <form action="https://formsubmit.co/el/vunaxi" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="_next" value="erfolg.html">
+            <input type="text" name="_honey" style="display:none">
+            
+            <label for="bewerbungsart">Bewerbung für:</label>
+            <select id="bewerbungsart" name="bewerbungsart" onchange="updateFields()">
+                <option value="Praktikum">Praktikum</option>
+                <option value="Ausbildung">Ausbildung</option>
+                <option value="Medizinische Fachangestellte">Medizinische Fachangestellte</option>
+            </select>
+            
+            <label for="first_name">Vorname:</label>
+            <input type="text" name="Vorname" id="first_name" placeholder="Max" required>
+
+            <label for="last_name">Nachname:</label>
+            <input type="text" name="Nachname" id="last_name" placeholder="Mustermann" required>
+
+            <label for="email">E-Mail:</label>
+            <input type="email" name="Email" id="email" placeholder="max.mustermann@email.com" required>
+
+            <label for="anschreiben">Anschreiben:</label>
+            <input type="file" name="Anschreiben" accept=".pdf,.jpg,.png" required>
+
+            <label for="lebenslauf">Lebenslauf (PDF):</label>
+            <input type="file" name="lebenslauf" accept=".pdf" required>
+
+            <div class="extra-field">
+                <label for="urkunde">Urkunde:</label>
+                <input type="file" name="Urkunde" accept=".pdf,.jpg,.png">
+            </div>
+
+            <div class="extra-field">
+                <label for="abschlusszeugnis">Abschlusszeugnis:</label>
+                <input type="file" name="Abschlusszeugnis" accept=".pdf,.jpg,.png">
+            </div>
+
+            <label for="letzteszeugnis">Letztes Zeugnis:</label>
+            <input type="file" name="Letztes Zeugnis" accept=".pdf,.jpg,.png">
+
+            <div class="extra-field">
+                <label for="lichtbild">Lichtbild:</label>
+                <input type="file" name="Lichtbild" accept=".pdf,.jpg,.png">
+            </div>
+
+            <div class="extra-field">
+                <label for="krankenkasse">Bescheinigung Krankenkasse:</label>
+                <input type="file" name="Bescheinigung Krankenkasse" accept=".pdf,.jpg,.png">
+            </div>
+
+            <label for="sonstiges">Sonstiges:</label>
+            <input type="file" name="Sonstiges" accept=".pdf,.jpg,.png">
+            
+            <div class="g-recaptcha" data-sitekey="6LdwF9MqAAAAABsebuiIYifWPgXFYrUhx0TtTXQH"></div>
+            
+            <button type="submit">Bewerbung senden</button>
+        </form>
+    </div>
+</body>
+</html>
